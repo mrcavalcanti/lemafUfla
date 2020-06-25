@@ -15,11 +15,22 @@ namespace lemafUfla
             ItemDictionary itemList = wordList.Find(el => el.Word == word);
             if (itemList == null)
             {
-                item = await Rest.GetItemDictionary(1);
-                if (item.Index > -1)
+                do
                 {
-                    wordList.Add(item);
-                }
+                    item = await Rest.GetItemDictionary(wordList.Count);
+                    if (item.Index > -1)
+                    {
+                        wordList.Add(item);
+                        if (item.Word == word)
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                } while (true);
             }
             else
             {
