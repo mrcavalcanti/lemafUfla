@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace lemafUfla
@@ -12,14 +11,19 @@ namespace lemafUfla
         public static async Task<ItemDictionary> ProcessDictionary(string word)
         {
             ItemDictionary item = null;
-            bool alreadyExist = wordList.Any(el => el.Word == word);
-            if (!alreadyExist)
+
+            ItemDictionary itemList = wordList.Find(el => el.Word == word);
+            if (itemList == null)
             {
                 item = await Rest.GetItemDictionary(1);
                 if (item.Index > -1)
                 {
                     wordList.Add(item);
                 }
+            }
+            else
+            {
+                item = itemList;
             }
             return item;
                 
