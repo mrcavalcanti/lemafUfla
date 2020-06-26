@@ -7,6 +7,7 @@ namespace lemafUfla
     {
         public int Index { get; set; }
         public string Word { get; set; }
+        public int tree { get; set; }
 
     }
 }

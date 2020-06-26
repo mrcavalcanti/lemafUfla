@@ -17,6 +17,7 @@ namespace lemafUfla
 
             var itemDictionary = await Dictionary.ProcessDictionary(word);
             Console.WriteLine(itemDictionary.Index + " - " + itemDictionary.Word);
+            Console.WriteLine("Arvores mortas: " + itemDictionary.tree);
             Console.WriteLine();
             await EnterWord();
         }
